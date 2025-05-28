@@ -1,7 +1,6 @@
-import { getSession, getUser, signOut } from "@/lib/auth";
+import { getAuthSession, getUser, signOut } from "@/lib/auth";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
-
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 import Link from "next/link";
@@ -11,7 +10,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function UserHeader() {
-  const session = await getSession();
+  const session = await getAuthSession();
   const user = await getUser(session?.userId.toString()); // Fetch user details based on session
 
   if (!session)
@@ -29,6 +28,7 @@ export default async function UserHeader() {
   return (
     <div className="flex items-center gap-2 ">
       <span className="hidden text-sm sm:inline-flex">{session.email}</span>
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-8 w-8 rounded-full">
