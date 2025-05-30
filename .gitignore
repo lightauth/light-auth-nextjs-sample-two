@@ -41,4 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # light auth users_db
-users_db
+users_db/
